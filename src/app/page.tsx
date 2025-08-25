@@ -276,7 +276,14 @@ export default function CatalogPage() {
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </select>
-                <select className="input" value={sort} onChange={(e) => setSort(e.target.value as any)}>
+                <select
+  className="input"
+  value={sort}
+  onChange={(e) =>
+    setSort(e.target.value as "name_asc" | "cost_asc" | "cost_desc")
+  }
+>
+
                   <option value="name_asc">ชื่อ A→Z</option>
                   <option value="cost_asc">ต้นทุน/1k จาก API: น้อย→มาก</option>
                   <option value="cost_desc">ต้นทุน/1k จาก API: มาก→น้อย</option>
