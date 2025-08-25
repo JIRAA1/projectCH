@@ -1,3 +1,4 @@
+export const preferredRegion = ["sin1"]; // Singapore
 import { NextResponse } from "next/server";
 import { Ads4u } from "@/lib/ads4u";
 
