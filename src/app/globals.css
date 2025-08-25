@@ -1,5 +1,10 @@
+/* 1) เพิ่มบรรทัดนี้ไว้ "เหนือสุด" ของไฟล์ */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Noto+Sans+Thai:wght@100..900&display=swap');
+
+/* Tailwind v4 core */
 @import "tailwindcss";
 
+/* Theme variables (คงของเดิม + เปลี่ยน font-sans เป็น Noto Sans Thai) */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -8,10 +13,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* โหมดมืด */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +24,32 @@
   }
 }
 
+/* ใช้ Noto Sans Thai ทั้งระบบ */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ฟอนต์หัวข้อ: League Gothic (ไม่มีตัวไทย ให้ fallback เป็น Noto Sans Thai) */
+@layer utilities {
+  .font-heading {
+    font-family: "League Gothic", "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  /* ==== utilities เดิมของคุณ (คงไว้) ==== */
+  .card { @apply rounded-2xl shadow border border-black/10 bg-white; }
+  @media (prefers-color-scheme: dark) { .card { @apply bg-zinc-900 border-white/10; } }
+
+  .btn { @apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-medium border transition; }
+  .btn-primary { @apply bg-blue-600 text-white border-blue-700 hover:bg-blue-700 hover:border-blue-800; }
+  .btn-ghost { @apply bg-black text-white border-black hover:bg-black/80; }
+
+  .input { @apply w-full rounded-xl border border-black/20 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400; }
+  @media (prefers-color-scheme: dark) { .input { @apply bg-zinc-900 border-white/10; } }
+
+  .pill { @apply inline-flex items-center gap-2 rounded-full border border-black/10 bg-blue-50 text-blue-700 px-3 py-1 text-sm; }
+  .badge { @apply inline-flex items-center rounded-full bg-blue-600 text-white px-2.5 py-0.5 text-xs; }
+  .table-th { @apply sticky top-0 bg-blue-600 text-white z-10 text-left text-[13px] font-semibold; }
 }
